@@ -7,15 +7,9 @@
   <title>Subscribe</title>
 </head>
 <body>
-  <form method="post" action="https://pubsubhubbub.appspot.com/subscribe" accept-charset="utf-8">
-    <input type="hidden" name="hub.mode" value="subscribe">
-    <input type="hidden" name="hub.topic" value="https://www.youtube.com/xml/feeds/videos.xml?channel_id=UCtigVReFc_JVqq-UnOmYPuw">
-    <input type="hidden" name="hub.callback" value="https://sub-op-dua-tb-sumberjaya.cloud.okteto.net/">
-    <input id="btn" type="submit">
-  </form>
   <script>
     window.onload = function() {
-      document.getElementById('btn').click();
+      sessionStorage.set("now", Date.now());
     }
   </script>
 </body>
