@@ -16,8 +16,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const formRegister = document.forms['register']
-alert(formRegister)
-formRegister?.addEventListener('submit', async e => {
+if (formRegister != undefined ) formRegister.addEventListener('submit', async e => {
   e.preventDefault()
   const formData = new FormData(form);
   const { email, password } = Object.fromEntries(formData)
@@ -43,7 +42,7 @@ formRegister?.addEventListener('submit', async e => {
 })
 
 const formLogin = document.forms['login']
-formLogin?.addEventListener('submit', async e => {
+if (formLogin != undefined ) formLogin.addEventListener('submit', async e => {
   e.preventDefault()
   const formData = new FormData(form);
   const { email, password } = Object.fromEntries(formData)
@@ -67,7 +66,8 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-document.getElementById('reset')?.addEventListener('click', () => {
+const reset = document.getElementById('reset')
+if(reset !=undefined) reset.addEventListener('click', () => {
   const user = auth.currentUser
   if (!user) return alert("Silakan login terlebih dahulu")
   sendPasswordResetEmail(auth, user?.email)
@@ -81,7 +81,8 @@ document.getElementById('reset')?.addEventListener('click', () => {
     });
 })
 
-document.getElementById('register')?.addEventListener('click', () => {
+const reg = document.getElementById('register')
+if(reg != undefined) reg.addEventListener('click', () => {
   window.location.assign("register")
 })
 
