@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-alert("ok")
+    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+alert("ok baru")
     const firebaseConfig = {
       apiKey: "AIzaSyDrkMcCiwtuGvjN0qHq0FbLfvQpr31lFdc",
       authDomain: "coba-login-nih.firebaseapp.com",
@@ -13,9 +13,35 @@ alert("ok")
     
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+
+const formRegister = document.forms['register']
+    formRegister.addEventListener('submit', async e => {
+      e.preventDefault()
+      const formData = new FormData(form);
+      const { email, password } = Object.fromEntries(formData)
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        sendEmailVerification(user)
+        .then(() => {
+          alert('Sukses! Silahkan verifikasi alamat e-mail Anda.')
+            window.location.assign("login")
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(error)
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorCode)
+      });
+    })
     
-    const form = document.forms['login']
-    form.addEventListener('submit', async e => {
+    const formLogin = document.forms['login']
+    formLogin.addEventListener('submit', async e => {
       e.preventDefault()
       const formData = new FormData(form);
       const { email, password } = Object.fromEntries(formData)
@@ -30,6 +56,7 @@ alert("ok")
         alert(errorMessage)
       });
     })
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         alert(JSON.stringify(user, null, 2))
@@ -37,6 +64,7 @@ alert("ok")
         if(/login|register/i.test(document.location.pathname)) window.location.assign("login")
       }
     });
+
     document.getElementById('reset').addEventListener('click', ()=> {
       const user = auth.currentUser
       if(!user) return alert("Silakan login terlebih dahulu")
