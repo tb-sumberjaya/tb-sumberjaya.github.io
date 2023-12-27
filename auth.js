@@ -59,8 +59,8 @@ formLogin?.addEventListener('submit', async e => {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    document.getElementById('info').innerHTML = "Halo, " + user.email
     if (/login|register/i.test(document.location.pathname)) window.location.assign("index")
+    document.getElementById('info').innerHTML = "Halo, " + user.email
   } else {
     if (!/login|register/i.test(document.location.pathname)) window.location.assign("login")
   }
