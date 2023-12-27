@@ -22,7 +22,7 @@
     <div class="container">
     <div class="col-md-6">
 <br>
-        <div class="fw-bold">PEngisian data</div> 
+        <div class="fw-bold">Pengisian data</div> 
         <br>
        
         <form name="my-form">
@@ -90,7 +90,9 @@
   //Validasi file biasa dgn sweet alert
   const validasiFile = (data, type = ['pdf'], size = 500) => {
     const tipe = new RegExp(type.join('|'), "i")
+    console.log(tipe)
     if (!tipe.test(data.files[0].type)) {
+    console.log("masuk")
       const allowed = type.join(", ")
       Swal.fire({
         icon: "info",
