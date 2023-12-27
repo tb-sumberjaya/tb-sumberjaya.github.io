@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 window.onload = function () {
 const firebaseConfig = {
   apiKey: "AIzaSyDrkMcCiwtuGvjN0qHq0FbLfvQpr31lFdc",
@@ -59,7 +59,7 @@ formLogin?.addEventListener('submit', async e => {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    alert("Telah login sebagai " + user.email)
+    document.getElementById('info')?.innerHTML = "Halo, " + user.email
     if (/login|register/i.test(document.location.pathname)) window.location.assign("index")
   } else {
     if (!/login|register/i.test(document.location.pathname)) window.location.assign("login")
@@ -80,6 +80,17 @@ document.getElementById('reset')?.addEventListener('click', () => {
     });
 })
 
+document.getElementById('logout')?.addEventListener('click', () => {
+  const user = auth.currentUser
+  if (!user) return alert("Kamu belum login!")
+  signOut(auth).then(() => {
+    alert("Berhasil logout!")
+  }).catch((error) => {
+    alert(error)
+  });
+}) 
+
+    
 document.getElementById('register')?.addEventListener('click', () => {
   window.location.assign("register")
 })
