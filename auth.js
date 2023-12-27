@@ -16,8 +16,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const formRegister = document.forms['register']
-if(formRegister){
-formRegister.addEventListener('submit', async e => {
+formRegister?.addEventListener('submit', async e => {
   e.preventDefault()
   const formData = new FormData(form);
   const { email, password } = Object.fromEntries(formData)
@@ -41,10 +40,9 @@ formRegister.addEventListener('submit', async e => {
       alert(errorCode)
     });
 })
-}
+
 const formLogin = document.forms['login']
-if(formLogin){
-formLogin.addEventListener('submit', async e => {
+formLogin?.addEventListener('submit', async e => {
   e.preventDefault()
   const formData = new FormData(form);
   const { email, password } = Object.fromEntries(formData)
@@ -59,8 +57,6 @@ formLogin.addEventListener('submit', async e => {
       alert(errorMessage)
     });
 })
-}
-
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
