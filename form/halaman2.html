@@ -79,7 +79,9 @@
 <!-- script sweet alert -->
 <script>
   // untukmengalihkan kehalaman pertama jika tidak isi wajib setelah halaman 1
-  if(!sessionStorage.getItem('data_1')) window.location.assign("index.html")
+  if(!sessionStorage.getItem('data_1')){
+      window.location.assign("index.html")
+  }
 
   const form = document.forms['my-form'];
   const btnKirim = document.querySelector('.btn-kirim');
