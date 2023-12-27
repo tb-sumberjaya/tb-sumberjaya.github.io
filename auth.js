@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 window.onload = function () {
-alert("ok baruuu")
+alert("ok new")
 const firebaseConfig = {
   apiKey: "AIzaSyDrkMcCiwtuGvjN0qHq0FbLfvQpr31lFdc",
   authDomain: "coba-login-nih.firebaseapp.com",
@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const formRegister = document.forms['register']
+if(formRegister){
 formRegister.addEventListener('submit', async e => {
   e.preventDefault()
   const formData = new FormData(form);
@@ -40,8 +41,9 @@ formRegister.addEventListener('submit', async e => {
       alert(errorCode)
     });
 })
-
+}
 const formLogin = document.forms['login']
+if(formLogin){
 formLogin.addEventListener('submit', async e => {
   e.preventDefault()
   const formData = new FormData(form);
@@ -57,6 +59,8 @@ formLogin.addEventListener('submit', async e => {
       alert(errorMessage)
     });
 })
+}
+
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -66,7 +70,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-document.getElementById('reset').addEventListener('click', () => {
+document.getElementById('reset')?.addEventListener('click', () => {
   const user = auth.currentUser
   if (!user) return alert("Silakan login terlebih dahulu")
   sendPasswordResetEmail(auth, user?.email)
@@ -80,7 +84,7 @@ document.getElementById('reset').addEventListener('click', () => {
     });
 })
 
-document.getElementById('register').addEventListener('click', () => {
+document.getElementById('register')?.addEventListener('click', () => {
   window.location.assign("register")
 })
 
