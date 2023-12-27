@@ -59,8 +59,16 @@ formLogin?.addEventListener('submit', async e => {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    if(user.emailVerified){
     if (/login|register/i.test(document.location.pathname)) window.location.assign("/")
     document.getElementById('info').innerHTML = "Halo, " + user.email
+    }else{
+      signOut(auth).then(() => {
+        alert("Email belum diverifikasi!")
+      }).catch((error) => {
+        alert(error)
+      });
+    }
   } else {
     if (!/login|register/i.test(document.location.pathname)) window.location.assign("/login")
   }
