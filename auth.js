@@ -59,10 +59,10 @@ formLogin?.addEventListener('submit', async e => {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    if (/login|register/i.test(document.location.pathname)) window.location.assign("index")
+    if (/login|register/i.test(document.location.pathname)) window.location.assign("/")
     document.getElementById('info').innerHTML = "Halo, " + user.email
   } else {
-    if (!/login|register/i.test(document.location.pathname)) window.location.assign("login")
+    if (!/login|register/i.test(document.location.pathname)) window.location.assign("/login")
   }
 });
 
@@ -92,7 +92,7 @@ document.getElementById('logout')?.addEventListener('click', () => {
 
     
 document.getElementById('register')?.addEventListener('click', () => {
-  window.location.assign("register")
+  window.location.assign("/register")
 })
 
 }
