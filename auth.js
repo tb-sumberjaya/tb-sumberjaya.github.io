@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 window.onload = function () {
-alert("ok new")
 const firebaseConfig = {
   apiKey: "AIzaSyDrkMcCiwtuGvjN0qHq0FbLfvQpr31lFdc",
   authDomain: "coba-login-nih.firebaseapp.com",
@@ -60,7 +59,8 @@ formLogin?.addEventListener('submit', async e => {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    alert(JSON.stringify(user, null, 2))
+    alert("Telah login sebagai " + user.email)
+    if (/login|register/i.test(document.location.pathname)) window.location.assign("index")
   } else {
     if (!/login|register/i.test(document.location.pathname)) window.location.assign("login")
   }
