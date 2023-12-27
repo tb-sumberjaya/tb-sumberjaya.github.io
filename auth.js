@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-alert("ok baru
-")
+alert("ok bar")
 const firebaseConfig = {
   apiKey: "AIzaSyDrkMcCiwtuGvjN0qHq0FbLfvQpr31lFdc",
   authDomain: "coba-login-nih.firebaseapp.com",
