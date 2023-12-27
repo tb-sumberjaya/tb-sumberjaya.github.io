@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const formRegister = document.forms['register']
+alert(formRegister)
 formRegister?.addEventListener('submit', async e => {
   e.preventDefault()
   const formData = new FormData(form);
