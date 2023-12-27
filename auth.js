@@ -17,7 +17,7 @@ const auth = getAuth(app);
 const formRegister = document.forms['register']
 formRegister?.addEventListener('submit', async e => {
   e.preventDefault()
-  const formData = new FormData(form);
+  const formData = new FormData(formRegister);
   const { email, password } = Object.fromEntries(formData)
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -43,7 +43,7 @@ formRegister?.addEventListener('submit', async e => {
 const formLogin = document.forms['login']
 formLogin?.addEventListener('submit', async e => {
   e.preventDefault()
-  const formData = new FormData(form);
+  const formData = new FormData(formLogin);
   const { email, password } = Object.fromEntries(formData)
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
