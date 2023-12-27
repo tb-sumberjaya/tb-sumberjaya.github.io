@@ -103,4 +103,8 @@ document.getElementById('register')?.addEventListener('click', () => {
   window.location.assign("/register")
 })
 
+document.getElementById('login')?.addEventListener('click', () => {
+  window.location.assign("/login")
+})
+
 }
