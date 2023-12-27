@@ -1,6 +1,7 @@
+window.onload = () => {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-alert("ok bar")
+alert("ok baruuu")
 const firebaseConfig = {
   apiKey: "AIzaSyDrkMcCiwtuGvjN0qHq0FbLfvQpr31lFdc",
   authDomain: "coba-login-nih.firebaseapp.com",
@@ -83,3 +84,4 @@ document.getElementById('register').addEventListener('click', () => {
   window.location.assign("register")
 })
 
+}
