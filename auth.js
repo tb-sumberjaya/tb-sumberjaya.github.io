@@ -58,21 +58,22 @@ formLogin?.addEventListener('submit', async e => {
 })
 
 onAuthStateChanged(auth, (user) => {
+  if (!user) return
   const { pathname } = document.location;
   if (/login/i.test(pathname)) {
-    if (user.emailVetified) {
+    if (user.emailVerified) {
       window.location.assign("/")
     } else {
       alert("Silakan verifikasi alamat emailmu terlebih dahulu!")
     }
   } else if (/register/i.test(pathname)) {
-    if (user.emailVetified) {
+    if (user.emailVerified) {
       window.location.assign("/")
     } else {
       window.location.assign("/login")
     }
   } else {
-    if (user.emailVetified) {
+    if (user.emailVerified) {
       document.getElementById('info').innerHTML = "Halo, " + user.email
     } else {
       window.location.assign("/login")
