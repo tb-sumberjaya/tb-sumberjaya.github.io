@@ -24,6 +24,9 @@ formRegister?.addEventListener('submit', async e => {
       sendEmailVerification(user, {
         url: "https://tb-sumberjaya.github.io/"
       })
+        .then(()=>{
+          alert("Akun berhasil dibuat!")
+        })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -54,8 +57,28 @@ formLogin?.addEventListener('submit', async e => {
     });
 })
 
-/*onAuthStateChanged(auth, (user) => {
-  if (user) {
+onAuthStateChanged(auth, (user) => {
+  const { pathname } = document.location;
+  if (/login/i.test(pathname)) {
+    if (user.emailVetified) {
+      window.location.assign("/")
+    } else {
+      alert("Silakan verifikasi alamat emailmu terlebih dahulu!")
+    }
+  } else if (/register/i.test(pathname)) {
+    if (user.emailVetified) {
+      window.location.assign("/")
+    } else {
+      window.location.assign("/login")
+    }
+  } else {
+    if (user.emailVetified) {
+      document.getElementById('info').innerHTML = "Halo, " + user.email
+    } else {
+      window.location.assign("/login")
+    }
+  }
+  /*if (user) {
     if(user.emailVerified){
     if (/login|register/i.test(document.location.pathname)) window.location.assign("/")
     document.getElementById('info').innerHTML = "Halo, " + user.email
@@ -69,8 +92,8 @@ formLogin?.addEventListener('submit', async e => {
     }
   } else {
     if (!/login|register/i.test(document.location.pathname)) window.location.assign("/login")
-  }
-});*/
+  }*/
+});
 
 document.getElementById('reset')?.addEventListener('click', () => {
   const user = auth.currentUser
