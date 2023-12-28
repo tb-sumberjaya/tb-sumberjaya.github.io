@@ -20,8 +20,8 @@ formRegister?.addEventListener('submit', async e => {
   const formData = new FormData(formRegister);
   const { email, password } = Object.fromEntries(formData)
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      userCredential.user.sendEmailVerification({
+    .then(({user}) => {
+      user.sendEmailVerification({
         url: "https://tb-sumberjaya.github.io/"
       })
         .then(() => {
