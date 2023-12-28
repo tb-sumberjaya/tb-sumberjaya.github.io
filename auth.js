@@ -24,10 +24,6 @@ formRegister?.addEventListener('submit', async e => {
       sendEmailVerification(user, {
         url: "https://tb-sumberjaya.github.io/"
       })
-        .then(() => {
-          alert('Sukses! Silahkan verifikasi alamat e-mail Anda.')
-          window.location.assign("login")
-        })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
@@ -65,7 +61,7 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById('info').innerHTML = "Halo, " + user.email
     }else{
       signOut(auth).then(() => {
-        alert("Email belum diverifikasi!")
+        alert("Silakan verifikasi alamat emailmu terlebih dahulu!")
       }).catch((error) => {
         alert(error)
       });
