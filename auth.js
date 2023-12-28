@@ -62,6 +62,7 @@ onAuthStateChanged(auth, (user) => {
     }else{
       signOut(auth).then(() => {
         alert("Silakan verifikasi alamat emailmu terlebih dahulu!")
+        window.location.assign("/login")
       }).catch((error) => {
         alert(error)
       });
