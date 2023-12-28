@@ -21,8 +21,9 @@ formRegister?.addEventListener('submit', async e => {
   const { email, password } = Object.fromEntries(formData)
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      const user = userCredential.user;
-      sendEmailVerification(user)
+      userCredential.sendEmailVerification({
+        url: "https://tb-sumberjaya.github.io/"
+      })
         .then(() => {
           alert('Sukses! Silahkan verifikasi alamat e-mail Anda.')
           window.location.assign("login")
