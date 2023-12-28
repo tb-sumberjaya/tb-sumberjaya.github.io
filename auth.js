@@ -69,7 +69,7 @@ onAuthStateChanged(auth, (user) => {
     }
   } else if (/register/i.test(pathname)) {
     if (user) {
-    if (user?.emailVerified) {
+    if (user.emailVerified) {
       window.location.assign("/")
     } else {
       window.location.assign("/login")
