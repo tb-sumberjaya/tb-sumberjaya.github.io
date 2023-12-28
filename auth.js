@@ -54,7 +54,7 @@ formLogin?.addEventListener('submit', async e => {
     });
 })
 
-onAuthStateChanged(auth, (user) => {
+/*onAuthStateChanged(auth, (user) => {
   if (user) {
     if(user.emailVerified){
     if (/login|register/i.test(document.location.pathname)) window.location.assign("/")
@@ -70,7 +70,7 @@ onAuthStateChanged(auth, (user) => {
   } else {
     if (!/login|register/i.test(document.location.pathname)) window.location.assign("/login")
   }
-});
+});*/
 
 document.getElementById('reset')?.addEventListener('click', () => {
   const user = auth.currentUser
